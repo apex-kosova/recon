@@ -1,0 +1,10 @@
+create table MFC_CLIENT_SUBJECT
+(
+  language_cd       INTEGER not null,
+  client_subject_cd INTEGER not null,
+  client_subject_nm VARCHAR2(50 CHAR) not null
+)
+;
+alter table MFC_CLIENT_SUBJECT
+  add constraint MFC_CLIENT_SUBJECT_PK primary key (LANGUAGE_CD, CLIENT_SUBJECT_CD);
+

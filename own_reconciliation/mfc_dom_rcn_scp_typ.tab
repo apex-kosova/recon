@@ -1,0 +1,109 @@
+create table MFC_DOM_RCN_SCP_TYP
+(
+  short_name VARCHAR2(20 CHAR) not null,
+  long_name  VARCHAR2(70 CHAR)
+)
+;
+comment on column MFC_DOM_RCN_SCP_TYP.short_name
+  is 'values: 
+ADDR 
+ADDR_TMN 
+BIMTN 
+BP 
+BP_POS 
+BP_TMN 
+CONT 
+CONT_TMN 
+FR_LIM_COV 
+FR_LIM_USE 
+FR_RET_RES 
+FXTR 
+FXTR_TMN 
+GUARCRED 
+IRS_TMN 
+KEY_FIGURE 
+LEDGER 
+LEDGER_ALT 
+LIMIT 
+LOAN 
+MACC 
+MACC_TMN 
+MINSTR 
+MINSTR_POS 
+MISC_ORDER 
+MMKT 
+MMKT_ALM 
+MMKT_PFAND 
+MMKT_TMN 
+OOFX_TMN 
+OTHSEC 
+PERSON 
+PERSON_TMN 
+POS_CERT 
+POS_MON 
+POS_MON_AI
+POS_MON_CF 
+POS_MON_OP 
+POS_MON_TMN 
+POS_SEC 
+POS_SEC_GA 
+POS_SEC_SV 
+POS_SEC_TMN 
+PROV_IN_SP 
+REALSEC 
+REALTY 
+REPOC_TMN 
+ZREG_PROOF ';
+comment on column MFC_DOM_RCN_SCP_TYP.long_name
+  is 'values: 
+address
+address, turmalin
+bank issued medium term note position
+business partner
+business partner position attorney
+business partner, turmalin
+container
+container, turmalin
+finance relation limit coverage position
+finance relation limit usage position
+finance relation realty realsec position
+foreign exchange transaction position
+foreign exchange transaction position, turmalin
+bank guarantee position
+interest rate swap, turmalin
+recon key figure
+general ledger
+alternative general ledger
+limit position
+loan position
+money account
+money account, turmalin
+mailing instruction
+mailing instruction on position
+miscellaneous order for RB, manually 
+money market position
+money market asset liability management position
+money market security position
+money market position, turmalin
+otc option foreign exchange, turmalin
+other security position
+person
+person, turmalin
+certificate position
+money position
+money position accrued interest position
+money position cost and fee position
+money position open position
+money position, turmalin
+security position
+security position association share
+security position salvo
+security position, turmalin
+provision on interest and specification position
+real security position
+realty position
+repo contract, turmalin
+individual client proof, manually';
+alter table MFC_DOM_RCN_SCP_TYP
+  add constraint MFC_DOM_RCN_SCP_TYP_PK primary key (SHORT_NAME);
+

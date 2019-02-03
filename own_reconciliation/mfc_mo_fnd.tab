@@ -1,0 +1,24 @@
+create table MFC_MO_FND
+(
+  fnd_id                INTEGER not null,
+  order_result_fg       CHAR(1),
+  itil_ticket_if_failed VARCHAR2(20 CHAR),
+  order_comment         VARCHAR2(1000 CHAR),
+  order_check_by        VARCHAR2(20 CHAR),
+  order_check_dt        DATE,
+  migr_run_id           INTEGER not null,
+  order_id              INTEGER not null,
+  rcn_prcs_id           INTEGER not null
+)
+;
+create index MFC_MO_FND_ORDER_ID_IDX on MFC_MO_FND (ORDER_ID);
+create index MFC_MO_FND_RCN_PRCS_ID_IDX on MFC_MO_FND (RCN_PRCS_ID);
+alter table MFC_MO_FND
+  add constraint MFC_MO_FND_PK primary key (FND_ID);
+alter table MFC_MO_FND
+  add constraint MFC_MISC_ORDER foreign key (ORDER_ID)
+  references MFC_MISC_ORDER (ORDER_ID);
+alter table MFC_MO_FND
+  add constraint MFC_MO_FND_IN_PRCS foreign key (RCN_PRCS_ID)
+  references MFC_RCN_PRCS (RCN_PRCS_ID);
+

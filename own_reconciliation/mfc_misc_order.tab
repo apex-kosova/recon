@@ -1,0 +1,11 @@
+create table MFC_MISC_ORDER
+(
+  order_id           INTEGER not null,
+  bank_location_code VARCHAR2(4 CHAR) not null,
+  inspect_order      VARCHAR2(1000 CHAR),
+  expected_result    VARCHAR2(1000 CHAR)
+)
+;
+alter table MFC_MISC_ORDER
+  add constraint MFC_MISC_ORDER_PK primary key (ORDER_ID);
+

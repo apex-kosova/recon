@@ -1,0 +1,8 @@
+create table MFC_GUI_HELP
+(
+  language_cd  INTEGER not null,
+  term_nm      VARCHAR2(200 CHAR) not null,
+  term_meaning VARCHAR2(4000 CHAR) not null
+)
+;
+

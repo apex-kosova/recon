@@ -1,0 +1,12 @@
+create table MFC_CLIENT_SAMPLE
+(
+  smpl_id            INTEGER not null,
+  bank_location_code VARCHAR2(4 CHAR) not null,
+  client_id          VARCHAR2(12 CHAR) not null,
+  client_subject_cd  INTEGER not null,
+  client_comment     VARCHAR2(1000 CHAR)
+)
+;
+alter table MFC_CLIENT_SAMPLE
+  add constraint MFC_CLIENT_SAMPLE_PK primary key (SMPL_ID);
+

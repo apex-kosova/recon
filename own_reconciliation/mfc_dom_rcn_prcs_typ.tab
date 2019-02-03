@@ -1,0 +1,33 @@
+create table MFC_DOM_RCN_PRCS_TYP
+(
+  short_name VARCHAR2(7 CHAR) not null,
+  long_name  VARCHAR2(30 CHAR)
+)
+;
+comment on column MFC_DOM_RCN_PRCS_TYP.short_name
+  is 'values: 
+MFCELTP 
+MFCEKFP 
+MFCEPNP 
+MFCEGLP 
+MFCESDP 
+MFCEZPP 
+MFCCHKP 
+MFCCPNP 
+MFCCGLP 
+MFCCSDP ';
+comment on column MFC_DOM_RCN_PRCS_TYP.long_name
+  is 'values: 
+MFC_ELT_PRCS 
+MFC_ELT_KF_PRCS 
+MFC_ELT_POS_PRCS 
+MFC_ELT_LDG_PRCS 
+MFC_ELT_STD_PRCS 
+MFC_ELT_ZP_PRCS 
+MFC_CHK_PRCS 
+MFC_CHK_POS_PRCS 
+MFC_CHK_LDG_PRCS 
+MFC_CHK_STD_PRCS ';
+alter table MFC_DOM_RCN_PRCS_TYP
+  add constraint MFC_DOM_RCN_PRCS_TYP_PK primary key (SHORT_NAME);
+

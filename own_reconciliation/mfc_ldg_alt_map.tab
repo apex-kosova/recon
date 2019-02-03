@@ -1,0 +1,10 @@
+create table MFC_LDG_ALT_MAP
+(
+  d2k_ldg_acc_key VARCHAR2(22 CHAR) not null,
+  acs_ldg_acc_key VARCHAR2(20 CHAR) not null,
+  acs_ldg_grp_nm  VARCHAR2(50 CHAR)
+)
+;
+alter table MFC_LDG_ALT_MAP
+  add constraint MFC_LDG_ALT_MAP_PK primary key (D2K_LDG_ACC_KEY, ACS_LDG_ACC_KEY);
+

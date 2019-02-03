@@ -1,0 +1,23 @@
+create table MFC_DOM_RCN_SCP_GRP
+(
+  short_name VARCHAR2(30 CHAR) not null,
+  long_name  VARCHAR2(100 CHAR)
+)
+;
+comment on column MFC_DOM_RCN_SCP_GRP.short_name
+  is 'values: 
+MFC_GENERAL_LEDGER, 
+MFC_POSITION_TYPE, 
+MFC_STATIC_DATA, 
+MFC_KEY_FIGURE, 
+MFC_ZREG_PROOF ';
+comment on column MFC_DOM_RCN_SCP_GRP.long_name
+  is 'values: 
+group of reconciliation check program scopes for general ledger, 
+group of reconciliation check program scopes for different position types, 
+group of reconciliation check program scopes for different static data, 
+group of reconciliation load program scopes for recon key figures from ACS target system, 
+group of reconciliation load program scopes for recon client samples data ';
+alter table MFC_DOM_RCN_SCP_GRP
+  add constraint MFC_DOM_RCN_SCP_GRP_PK primary key (SHORT_NAME);
+

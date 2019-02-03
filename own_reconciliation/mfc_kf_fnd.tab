@@ -1,0 +1,18 @@
+create table MFC_KF_FND
+(
+  fnd_id                 INTEGER not null,
+  acs_asset_sum          NUMBER(15,2),
+  acs_liability_sum      NUMBER(15,2),
+  acs_mortgage_claim_sum NUMBER(15,2),
+  acs_ebank_contract_cnt INTEGER,
+  migr_run_id            INTEGER not null,
+  rcn_prcs_id            INTEGER not null
+)
+;
+create index MFC_KF_FND_RCN_PRCS_ID_IDX on MFC_KF_FND (RCN_PRCS_ID);
+alter table MFC_KF_FND
+  add constraint MFC_KF_FND_PK primary key (FND_ID);
+alter table MFC_KF_FND
+  add constraint MFC_KF_FND_IN_PRCS foreign key (RCN_PRCS_ID)
+  references MFC_RCN_PRCS (RCN_PRCS_ID);
+

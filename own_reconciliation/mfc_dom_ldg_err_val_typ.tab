@@ -1,0 +1,17 @@
+create table MFC_DOM_LDG_ERR_VAL_TYP
+(
+  short_name VARCHAR2(10 CHAR) not null,
+  long_name  VARCHAR2(30 CHAR)
+)
+;
+comment on column MFC_DOM_LDG_ERR_VAL_TYP.short_name
+  is 'values: 
+MFCRVLABS 
+MFCRVLPCT ';
+comment on column MFC_DOM_LDG_ERR_VAL_TYP.long_name
+  is 'values: 
+MFC_LDG_ERR_VAL_ABS 
+MFC_LDG_ERR_VAL_PCT ';
+alter table MFC_DOM_LDG_ERR_VAL_TYP
+  add constraint MFC_DOM_LDG_ERR_VAL_TYP_PK primary key (SHORT_NAME);
+

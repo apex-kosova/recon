@@ -1,0 +1,60 @@
+create table MFC_MACC_TMN_FND
+(
+  fnd_id                    INTEGER not null,
+  std_fnd_comment           VARCHAR2(1000 CHAR),
+  std_fnd_migr_error        VARCHAR2(1000 CHAR),
+  std_fnd_sign_off_fg       CHAR(1),
+  std_fnd_bug_fix_itil_no   VARCHAR2(25 CHAR),
+  migr_run_id               INTEGER not null,
+  macc_key                  VARCHAR2(60 CHAR) not null,
+  src_client_id             VARCHAR2(12 CHAR),
+  trg_client_id             VARCHAR2(12 CHAR),
+  match_client_id           VARCHAR2(25 CHAR) not null,
+  src_ctn_key               VARCHAR2(60 CHAR),
+  trg_ctn_key               VARCHAR2(60 CHAR),
+  match_ctn_key             VARCHAR2(25 CHAR) not null,
+  src_iban                  VARCHAR2(25 CHAR),
+  trg_iban                  VARCHAR2(25 CHAR),
+  match_iban                VARCHAR2(25 CHAR) not null,
+  src_xtrnl_key             VARCHAR2(25 CHAR),
+  trg_xtrnl_key             VARCHAR2(25 CHAR),
+  match_xtrnl_key           VARCHAR2(25 CHAR) not null,
+  src_product_key           VARCHAR2(256 CHAR),
+  trg_product_key           VARCHAR2(256 CHAR),
+  match_product_key         VARCHAR2(25 CHAR) not null,
+  src_create_dt             DATE,
+  trg_create_dt             DATE,
+  match_create_dt           VARCHAR2(25 CHAR) not null,
+  src_ref_currency          VARCHAR2(4 CHAR),
+  trg_ref_currency          VARCHAR2(4 CHAR),
+  match_ref_currency        VARCHAR2(25 CHAR) not null,
+  src_block_cnt             INTEGER,
+  trg_block_cnt             INTEGER,
+  match_block_cnt           VARCHAR2(25 CHAR) not null,
+  src_block_detail          VARCHAR2(1024 CHAR),
+  trg_block_detail          VARCHAR2(1024 CHAR),
+  match_block_detail        VARCHAR2(25 CHAR) not null,
+  src_cost_fee_cnt          INTEGER,
+  trg_cost_fee_cnt          INTEGER,
+  match_cost_fee_cnt        VARCHAR2(25 CHAR) not null,
+  src_cost_fee_detail       VARCHAR2(1024 CHAR),
+  trg_cost_fee_detail       VARCHAR2(1024 CHAR),
+  match_cost_fee_detail     VARCHAR2(25 CHAR) not null,
+  src_dbt_graduate_ntrst    VARCHAR2(256 CHAR),
+  trg_dbt_graduate_ntrst    VARCHAR2(256 CHAR),
+  match_dbt_graduate_ntrst  VARCHAR2(25 CHAR) not null,
+  src_crdt_graduate_ntrst   VARCHAR2(256 CHAR),
+  trg_crdt_graduate_ntrst   VARCHAR2(256 CHAR),
+  match_crdt_graduate_ntrst VARCHAR2(25 CHAR) not null,
+  inherit_fnd_id            INTEGER,
+  inherit_run_rank          INTEGER,
+  rcn_prcs_id               INTEGER not null
+)
+;
+create index MFC_MACC_TMN_FND_RCN_PRC_IDX on MFC_MACC_TMN_FND (RCN_PRCS_ID);
+alter table MFC_MACC_TMN_FND
+  add constraint MFC_MACC_TMN_FND_PK primary key (FND_ID);
+alter table MFC_MACC_TMN_FND
+  add constraint MFC_MACC_TMN_FND_IN_PRCS foreign key (RCN_PRCS_ID)
+  references MFC_RCN_PRCS (RCN_PRCS_ID);
+

@@ -1,0 +1,28 @@
+create table MFC_BP_POS_FND
+(
+  fnd_id                  INTEGER not null,
+  std_fnd_comment         VARCHAR2(1000 CHAR),
+  std_fnd_migr_error      VARCHAR2(1000 CHAR),
+  std_fnd_sign_off_fg     CHAR(1),
+  std_fnd_bug_fix_itil_no VARCHAR2(25 CHAR),
+  migr_run_id             INTEGER not null,
+  bp_key                  VARCHAR2(60 CHAR) not null,
+  src_attorney_cnt        INTEGER,
+  trg_attorney_cnt        INTEGER,
+  match_attorney_cnt      VARCHAR2(25 CHAR) not null,
+  src_attorney_lst        VARCHAR2(4000 CHAR),
+  trg_attorney_lst        VARCHAR2(4000 CHAR),
+  match_attorney_lst      VARCHAR2(25 CHAR) not null,
+  rcn_prcs_id             INTEGER not null,
+  inherit_fnd_id          INTEGER,
+  inherit_run_rank        INTEGER
+)
+;
+create bitmap index IDX_BPPOS_FND_MIGRUN on MFC_BP_POS_FND (MIGR_RUN_ID);
+create index MFC_BP_POS_FND_RCN_PRCS_ID_IDX on MFC_BP_POS_FND (RCN_PRCS_ID);
+alter table MFC_BP_POS_FND
+  add constraint MFC_BP_POS_FND_PK primary key (FND_ID);
+alter table MFC_BP_POS_FND
+  add constraint MFC_BP_POS_FND_IN_PRCS foreign key (RCN_PRCS_ID)
+  references MFC_RCN_PRCS (RCN_PRCS_ID);
+

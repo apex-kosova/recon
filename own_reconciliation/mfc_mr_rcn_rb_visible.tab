@@ -1,0 +1,8 @@
+create table MFC_MR_RCN_RB_VISIBLE
+(
+  migr_run_id INTEGER not null
+)
+;
+alter table MFC_MR_RCN_RB_VISIBLE
+  add constraint MFC_MR_RCN_RB_VISIBLE_PK primary key (MIGR_RUN_ID);
+

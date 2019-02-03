@@ -1,0 +1,41 @@
+create table MFC_LDG_FND
+(
+  fnd_id                  INTEGER not null,
+  ldg_acc_key             VARCHAR2(20 CHAR) not null,
+  ldg_acc_name            VARCHAR2(256 CHAR),
+  price_per_unit          NUMBER,
+  acc_curr_cd             VARCHAR2(3 CHAR) not null,
+  acc_amount              NUMBER(15,2) not null,
+  exch_rate               NUMBER,
+  acc_amount_chf          NUMBER(15,2),
+  ldg_fnd_comment         VARCHAR2(1000 CHAR),
+  ldg_fnd_sign_off_fg     CHAR(1),
+  ldg_fnd_bug_fix_itil_no VARCHAR2(25 CHAR),
+  match_acc_amount_chf    VARCHAR2(25 CHAR) not null,
+  migr_run_id             INTEGER not null,
+  rcn_prcs_id             INTEGER not null,
+  d2k_cum_cnt             INTEGER,
+  d2k_cum_acc_amount      NUMBER(15,2),
+  d2k_cum_acc_amount_chf  NUMBER(15,2),
+  map_d2k_ldg_acc_key     VARCHAR2(20 CHAR),
+  map_acs_ldg_acc_key     VARCHAR2(20 CHAR),
+  ldg_fnd_type            VARCHAR2(6) not null,
+  inherit_fnd_id          INTEGER,
+  inherit_run_rank        INTEGER
+)
+;
+create index MFC_LDG_FND_RCN_PRCS_ID_IDX on MFC_LDG_FND (RCN_PRCS_ID);
+alter table MFC_LDG_FND
+  add constraint MFC_LDG_FND_PK primary key (FND_ID);
+alter table MFC_LDG_FND
+  add constraint MFC_LDG_FND_MR_ACC_KEY_UK unique (LDG_ACC_KEY, MIGR_RUN_ID);
+alter table MFC_LDG_FND
+  add constraint MFC_LDG_FND_IN_PRCS foreign key (RCN_PRCS_ID)
+  references MFC_RCN_PRCS (RCN_PRCS_ID);
+alter table MFC_LDG_FND
+  add constraint CH_INH_MFC_LDG_FND
+  check ( ldg_fnd_type IN ('MFCLFA', 'MFCLFD'));
+alter table MFC_LDG_FND
+  add constraint MFC_LDG_FND_EXDEP
+  check ( (ldg_fnd_type = 'MFCLFA' AND map_d2k_ldg_acc_key IS NULL AND map_acs_ldg_acc_key IS NULL) OR (ldg_fnd_type = 'MFCLFD' AND d2k_cum_cnt IS NULL AND d2k_cum_acc_amount IS NULL AND d2k_cum_acc_amount_chf IS NULL));
+
