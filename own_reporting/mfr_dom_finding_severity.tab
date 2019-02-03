@@ -1,0 +1,21 @@
+create table MFR_DOM_FINDING_SEVERITY
+(
+  short_name VARCHAR2(3 CHAR) not null,
+  long_name  VARCHAR2(30 CHAR)
+)
+;
+comment on column MFR_DOM_FINDING_SEVERITY.short_name
+  is 'values: 
+err 
+ftl 
+inf 
+wrn ';
+comment on column MFR_DOM_FINDING_SEVERITY.long_name
+  is 'values: 
+error 
+fatal 
+information 
+warning ';
+alter table MFR_DOM_FINDING_SEVERITY
+  add constraint MFR_DOM_FINDING_SEVERITY_PK primary key (SHORT_NAME);
+

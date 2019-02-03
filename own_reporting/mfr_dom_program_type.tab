@@ -1,0 +1,17 @@
+create table MFR_DOM_PROGRAM_TYPE
+(
+  short_name VARCHAR2(6 CHAR) not null,
+  long_name  VARCHAR2(30 CHAR)
+)
+;
+comment on column MFR_DOM_PROGRAM_TYPE.short_name
+  is 'values: 
+MFRRST 
+MFRFND ';
+comment on column MFR_DOM_PROGRAM_TYPE.long_name
+  is 'values: 
+MFR_TECH_QLTY_CHK_RST_PROG 
+MFR_TECH_QLTY_CHK_FND_PROG ';
+alter table MFR_DOM_PROGRAM_TYPE
+  add constraint MFR_DOM_PROGRAM_TYPE_PK primary key (SHORT_NAME);
+

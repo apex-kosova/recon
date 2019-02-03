@@ -1,0 +1,21 @@
+create table MFR_PROCESS_FINDING
+(
+  fnd_id                 INTEGER not null,
+  fnd_description        VARCHAR2(1000 CHAR) not null,
+  fnd_record_key         VARCHAR2(60 CHAR),
+  fnd_record_count       INTEGER,
+  fnd_severity           VARCHAR2(3 CHAR) not null,
+  fnd_supports_readiness CHAR(1) not null,
+  process_id             INTEGER not null
+)
+;
+alter table MFR_PROCESS_FINDING
+  add constraint MFR_PROCESS_FINDING_PK primary key (FND_ID);
+alter table MFR_PROCESS_FINDING
+  add constraint MFR_PROCESS_FINDING foreign key (PROCESS_ID)
+  references MFR_PROCESS (PROCESS_ID);
+alter table MFR_PROCESS_FINDING
+  add check (fnd_severity IN ('err', 'ftl', 'inf', 'wrn'));
+alter table MFR_PROCESS_FINDING
+  add check ( fnd_supports_readiness IN ('0', '1'));
+

@@ -1,0 +1,15 @@
+create table MFR_SCOPE_FINDING
+(
+  scope_supports_readiness CHAR(1) not null,
+  run_id                   INTEGER not null,
+  scope_name               VARCHAR2(50 CHAR) not null
+)
+;
+alter table MFR_SCOPE_FINDING
+  add constraint MFR_SCOPE_FINDING_PK primary key (RUN_ID, SCOPE_NAME);
+alter table MFR_SCOPE_FINDING
+  add constraint SCOPE_IN_MIGRATION_RUN foreign key (SCOPE_NAME)
+  references MFR_TECH_QLTY_CHK_SCOPE (SCOPE_NAME);
+alter table MFR_SCOPE_FINDING
+  add check ( scope_supports_readiness IN ('0', '1'));
+

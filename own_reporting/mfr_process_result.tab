@@ -1,0 +1,12 @@
+create table MFR_PROCESS_RESULT
+(
+  result_count INTEGER not null,
+  process_id   INTEGER not null
+)
+;
+alter table MFR_PROCESS_RESULT
+  add constraint MFR_PROCESS_RESULT_PK primary key (PROCESS_ID);
+alter table MFR_PROCESS_RESULT
+  add constraint MFR_PROCESS_RESULT foreign key (PROCESS_ID)
+  references MFR_PROCESS (PROCESS_ID);
+

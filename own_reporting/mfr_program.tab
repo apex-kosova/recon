@@ -1,0 +1,22 @@
+create table MFR_PROGRAM
+(
+  program_name         VARCHAR2(50 CHAR) not null,
+  scope_name           VARCHAR2(50 CHAR) not null,
+  data_migration_stage VARCHAR2(6 CHAR),
+  program_type         VARCHAR2(6) not null
+)
+;
+alter table MFR_PROGRAM
+  add constraint MFR_PROGRAM_PK primary key (PROGRAM_NAME);
+alter table MFR_PROGRAM
+  add constraint MFR_PROG_TQC_SCOPE foreign key (SCOPE_NAME)
+  references MFR_TECH_QLTY_CHK_SCOPE (SCOPE_NAME);
+alter table MFR_PROGRAM
+  add constraint CH_INH_MFR_PROGRAM
+  check ("PROGRAM_TYPE"='MFRFND' OR "PROGRAM_TYPE"='MFRRST');
+alter table MFR_PROGRAM
+  add constraint MFR_PROGRAM_EXDEP
+  check ("PROGRAM_TYPE"='MFRFND' AND "DATA_MIGRATION_STAGE" IS NULL OR "PROGRAM_TYPE"='MFRRST' AND "DATA_MIGRATION_STAGE" IS NOT NULL);
+alter table MFR_PROGRAM
+  add check ( data_migration_stage IN ('srcsys', 'stgtab', 'migtab', 'trgsys') );
+

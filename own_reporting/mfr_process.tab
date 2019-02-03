@@ -1,0 +1,16 @@
+create table MFR_PROCESS
+(
+  process_id         INTEGER not null,
+  process_start_time TIMESTAMP(6) not null,
+  run_id             INTEGER not null,
+  program_name       VARCHAR2(50 CHAR) not null
+)
+;
+alter table MFR_PROCESS
+  add constraint MFR_PROCESS_PK primary key (PROCESS_ID);
+alter table MFR_PROCESS
+  add constraint MFR_PROCESS_UK unique (RUN_ID, PROGRAM_NAME);
+alter table MFR_PROCESS
+  add constraint MFR_PROCESS_PROGRAM foreign key (PROGRAM_NAME)
+  references MFR_PROGRAM (PROGRAM_NAME);
+

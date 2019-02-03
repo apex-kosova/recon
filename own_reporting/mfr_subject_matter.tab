@@ -1,0 +1,9 @@
+create table MFR_SUBJECT_MATTER
+(
+  sub_mat_name VARCHAR2(30 CHAR) not null,
+  sub_mat_type VARCHAR2(30 CHAR) not null
+)
+;
+alter table MFR_SUBJECT_MATTER
+  add constraint SUBJECT_MATTER_PK primary key (SUB_MAT_NAME);
+
