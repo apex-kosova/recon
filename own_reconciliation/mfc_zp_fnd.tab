@@ -1,0 +1,24 @@
+create table MFC_ZP_FND
+(
+  fnd_id                INTEGER not null,
+  proof_result_fg       CHAR(1),
+  itil_ticket_if_failed VARCHAR2(20 CHAR),
+  proof_comment         VARCHAR2(1000 CHAR),
+  proof_check_by        VARCHAR2(20 CHAR),
+  proof_check_dt        DATE,
+  migr_run_id           INTEGER not null,
+  smpl_id               INTEGER not null,
+  rcn_prcs_id           INTEGER not null
+)
+;
+create index MFC_ZP_FND_RCN_PRCS_ID_IDX on MFC_ZP_FND (RCN_PRCS_ID);
+create index MFC_ZP_FND_SMPL_ID_IDX on MFC_ZP_FND (SMPL_ID);
+alter table MFC_ZP_FND
+  add constraint MFC_ZP_FND_PK primary key (FND_ID);
+alter table MFC_ZP_FND
+  add constraint MFC_ZREG_PROOF foreign key (SMPL_ID)
+  references MFC_CLIENT_SAMPLE (SMPL_ID);
+alter table MFC_ZP_FND
+  add constraint MFC_ZRP_FND_IN_PRCS foreign key (RCN_PRCS_ID)
+  references MFC_RCN_PRCS (RCN_PRCS_ID);
+

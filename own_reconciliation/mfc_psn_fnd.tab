@@ -1,0 +1,71 @@
+create table MFC_PSN_FND
+(
+  fnd_id                      INTEGER not null,
+  std_fnd_comment             VARCHAR2(1000 CHAR),
+  std_fnd_migr_error          VARCHAR2(1000 CHAR),
+  std_fnd_sign_off_fg         CHAR(1),
+  std_fnd_bug_fix_itil_no     VARCHAR2(25 CHAR),
+  migr_run_id                 INTEGER not null,
+  psn_key                     VARCHAR2(60 CHAR) not null,
+  src_client_id               VARCHAR2(20 CHAR),
+  trg_client_id               VARCHAR2(20 CHAR),
+  match_client_id             VARCHAR2(25 CHAR) not null,
+  src_client_nm               VARCHAR2(256 CHAR),
+  trg_client_nm               VARCHAR2(256 CHAR),
+  match_client_nm             VARCHAR2(25 CHAR) not null,
+  src_client_birth_dt         DATE,
+  trg_client_birth_dt         DATE,
+  match_client_birth_dt       VARCHAR2(25 CHAR) not null,
+  src_nation_cntry_cd         VARCHAR2(3 CHAR),
+  trg_nation_cntry_cd         VARCHAR2(3 CHAR),
+  match_nation_cntry_cd       VARCHAR2(25 CHAR) not null,
+  src_legal_form              VARCHAR2(256 CHAR),
+  trg_legal_form              VARCHAR2(256 CHAR),
+  match_legal_form            VARCHAR2(25 CHAR) not null,
+  src_snb_cd                  VARCHAR2(256 CHAR),
+  trg_snb_cd                  VARCHAR2(256 CHAR),
+  match_snb_cd                VARCHAR2(25 CHAR) not null,
+  src_client_type             VARCHAR2(256 CHAR),
+  trg_client_type             VARCHAR2(256 CHAR),
+  match_client_type           VARCHAR2(25 CHAR) not null,
+  src_client_status           VARCHAR2(256 CHAR),
+  trg_client_status           VARCHAR2(256 CHAR),
+  match_client_status         VARCHAR2(25 CHAR) not null,
+  src_ident_status            VARCHAR2(256 CHAR),
+  trg_ident_status            VARCHAR2(256 CHAR),
+  match_ident_status          VARCHAR2(25 CHAR) not null,
+  src_capability_2_act        VARCHAR2(256 CHAR),
+  trg_capability_2_act        VARCHAR2(256 CHAR),
+  match_capability_2_act      VARCHAR2(25 CHAR) not null,
+  src_prsn_rel_wnr_cmty_cnt   INTEGER,
+  trg_prsn_rel_wnr_cmty_cnt   INTEGER,
+  match_prsn_rel_wnr_cmty_cnt VARCHAR2(25 CHAR) not null,
+  src_prsn_rel_wnr_cmty_lst   VARCHAR2(4000 CHAR),
+  trg_prsn_rel_wnr_cmty_lst   VARCHAR2(4000 CHAR),
+  match_prsn_rel_wnr_cmty_lst VARCHAR2(25 CHAR) not null,
+  src_prsn_rel_all_cnt        INTEGER,
+  trg_prsn_rel_all_cnt        INTEGER,
+  src_prsn_rel_all_lst        VARCHAR2(4000 CHAR),
+  trg_prsn_rel_all_lst        VARCHAR2(4000 CHAR),
+  src_fatca_cmpl              VARCHAR2(256 CHAR),
+  trg_fatca_cmpl              VARCHAR2(256 CHAR),
+  match_fatca_cmpl            VARCHAR2(25 CHAR) not null,
+  src_fatca_eval              VARCHAR2(256 CHAR),
+  trg_fatca_eval              VARCHAR2(256 CHAR),
+  match_fatca_eval            VARCHAR2(25 CHAR) not null,
+  src_fatca_status            VARCHAR2(256 CHAR),
+  trg_fatca_status            VARCHAR2(256 CHAR),
+  match_fatca_status          VARCHAR2(25 CHAR) not null,
+  rcn_prcs_id                 INTEGER not null,
+  inherit_fnd_id              INTEGER,
+  inherit_run_rank            INTEGER
+)
+;
+create index MFC_PSN_FND_MIGR_RUN on MFC_PSN_FND (MIGR_RUN_ID);
+create index MFC_PSN_FND_RCN_PRCS_ID_IDX on MFC_PSN_FND (RCN_PRCS_ID);
+alter table MFC_PSN_FND
+  add constraint MFC_PSN_FND_PK primary key (FND_ID);
+alter table MFC_PSN_FND
+  add constraint MFC_PSN_FND_IN_PRCS foreign key (RCN_PRCS_ID)
+  references MFC_RCN_PRCS (RCN_PRCS_ID);
+

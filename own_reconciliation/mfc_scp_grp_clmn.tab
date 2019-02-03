@@ -1,0 +1,14 @@
+create table MFC_SCP_GRP_CLMN
+(
+  rcn_scope_group VARCHAR2(30 CHAR) not null,
+  rcn_scope_typ   VARCHAR2(20 CHAR),
+  order_no        INTEGER not null,
+  clmn_base_nm    VARCHAR2(30 CHAR) not null,
+  clmn_d2k_nm     VARCHAR2(30 CHAR),
+  clmn_ar_nm      VARCHAR2(30 CHAR),
+  clmn_avr_nm     VARCHAR2(30 CHAR),
+  clmn_acs_nm     VARCHAR2(30 CHAR),
+  clmn_chk_fg     CHAR(1)
+)
+;
+

@@ -1,0 +1,57 @@
+create table MFC_PSN_TMN_FND
+(
+  fnd_id                     INTEGER not null,
+  std_fnd_comment            VARCHAR2(1000 CHAR),
+  std_fnd_migr_error         VARCHAR2(1000 CHAR),
+  std_fnd_sign_off_fg        CHAR(1),
+  std_fnd_bug_fix_itil_no    VARCHAR2(25 CHAR),
+  migr_run_id                INTEGER not null,
+  psn_key                    VARCHAR2(60 CHAR) not null,
+  src_client_type            VARCHAR2(256 CHAR),
+  trg_client_type            VARCHAR2(256 CHAR),
+  match_client_type          VARCHAR2(25 CHAR) not null,
+  src_client_nm              VARCHAR2(256 CHAR),
+  trg_client_nm              VARCHAR2(256 CHAR),
+  match_client_nm            VARCHAR2(25 CHAR) not null,
+  src_nation_cntry_cd        VARCHAR2(3 CHAR),
+  trg_nation_cntry_cd        VARCHAR2(3 CHAR),
+  match_nation_cntry_cd      VARCHAR2(25 CHAR) not null,
+  src_snb_nm                 VARCHAR2(256 CHAR),
+  trg_snb_nm                 VARCHAR2(256 CHAR),
+  match_snb_nm               VARCHAR2(25 CHAR) not null,
+  src_bus_connect_type       VARCHAR2(256 CHAR),
+  trg_bus_connect_type       VARCHAR2(256 CHAR),
+  match_bus_connect_type     VARCHAR2(25 CHAR) not null,
+  src_prsn_ident_cnt         INTEGER,
+  trg_prsn_ident_cnt         INTEGER,
+  match_prsn_ident_cnt       VARCHAR2(25 CHAR) not null,
+  src_prsn_ident_lst         VARCHAR2(4000 CHAR),
+  trg_prsn_ident_lst         VARCHAR2(4000 CHAR),
+  match_prsn_ident_lst       VARCHAR2(25 CHAR) not null,
+  src_prsn_rel_pep_dap_cnt   INTEGER,
+  trg_prsn_rel_pep_dap_cnt   INTEGER,
+  match_prsn_rel_pep_dap_cnt VARCHAR2(25 CHAR) not null,
+  src_prsn_rel_pep_dap_lst   VARCHAR2(4000 CHAR),
+  trg_prsn_rel_pep_dap_lst   VARCHAR2(4000 CHAR),
+  match_prsn_rel_pep_dap_lst VARCHAR2(25 CHAR) not null,
+  src_prsn_rel_rspnsbl       VARCHAR2(256 CHAR),
+  trg_prsn_rel_rspnsbl       VARCHAR2(256 CHAR),
+  match_prsn_rel_rspnsbl     VARCHAR2(25 CHAR) not null,
+  src_dcmnt_cnt              INTEGER,
+  trg_dcmnt_cnt              INTEGER,
+  match_dcmnt_cnt            VARCHAR2(25 CHAR) not null,
+  src_dcmnt_lst              VARCHAR2(4000 CHAR),
+  trg_dcmnt_lst              VARCHAR2(4000 CHAR),
+  match_dcmnt_lst            VARCHAR2(25 CHAR) not null,
+  inherit_fnd_id             INTEGER,
+  inherit_run_rank           INTEGER,
+  rcn_prcs_id                INTEGER not null
+)
+;
+create index MFC_PSN_TMN_FND_RCN_PRC_IDX on MFC_PSN_TMN_FND (RCN_PRCS_ID);
+alter table MFC_PSN_TMN_FND
+  add constraint MFC_PSN_TMN_FND_PK primary key (FND_ID);
+alter table MFC_PSN_TMN_FND
+  add constraint MFC_PSN_TMN_FND_IN_PRCS foreign key (RCN_PRCS_ID)
+  references MFC_RCN_PRCS (RCN_PRCS_ID);
+

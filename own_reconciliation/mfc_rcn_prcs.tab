@@ -1,0 +1,114 @@
+create table MFC_RCN_PRCS
+(
+  rcn_prcs_id         INTEGER not null,
+  rcn_prcs_status     VARCHAR2(3 CHAR) not null,
+  rcn_prcs_start_time TIMESTAMP(6) not null,
+  rcn_prcs_end_time   TIMESTAMP(6),
+  rcn_prcs_finding    VARCHAR2(4000 CHAR),
+  migr_run_id         INTEGER not null,
+  rcn_prgm_name       VARCHAR2(50 CHAR) not null,
+  rcn_scope_typ       VARCHAR2(20 CHAR) not null,
+  rcn_fnd_cnt         INTEGER,
+  rcn_load_cnt        INTEGER,
+  prcs_type           VARCHAR2(7) not null,
+  rcn_no_cmnt_cnt     NUMBER
+)
+;
+create unique index MFC_RCN_PRCN_ID_PRGM on MFC_RCN_PRCS (RCN_PRCS_ID, MIGR_RUN_ID, RCN_PRGM_NAME);
+create index MFC_RCN_PRCS_MIGR_RUN on MFC_RCN_PRCS (MIGR_RUN_ID);
+create index MFC_RCN_PRCS_RCN_PRGM_NAME_IDX on MFC_RCN_PRCS (RCN_PRGM_NAME);
+create index MFC_RCN_PRCS_RCN_SCOPE_TYP_IDX on MFC_RCN_PRCS (RCN_SCOPE_TYP);
+alter table MFC_RCN_PRCS
+  add constraint MFC_RCN_PRCS_PK primary key (RCN_PRCS_ID);
+alter table MFC_RCN_PRCS
+  add constraint MFC_PRCS_OF_PRGM foreign key (RCN_PRGM_NAME)
+  references MFC_RCN_PRGM (RCN_PRGM_NAME);
+alter table MFC_RCN_PRCS
+  add constraint MFC_PRGM_IN_SCOPE foreign key (RCN_SCOPE_TYP)
+  references MFC_RCN_SCP (RCN_SCOPE_TYP);
+alter table MFC_RCN_PRCS
+  add constraint CH_INH_MFC_RCN_PRCS
+  check ( prcs_type IN ('MFCCGLP', 'MFCCHKP', 'MFCCPNP', 'MFCCSDP', 'MFCEGLP', 'MFCEKFP', 'MFCELTP', 'MFCEMOP', 'MFCEPNP', 'MFCESDP', 'MFCEZPP'));
+alter table MFC_RCN_PRCS
+  add constraint MFC_RCN_PRCS_EXDEP
+  check (
+        (
+            prcs_type = 'MFCCGLP'
+            AND rcn_fnd_cnt IS NOT NULL
+            AND rcn_no_cmnt_cnt IS NOT NULL
+            AND rcn_load_cnt IS NULL
+        )
+        OR (
+            prcs_type = 'MFCCHKP'
+            AND rcn_fnd_cnt IS NOT NULL
+            AND rcn_no_cmnt_cnt IS NOT NULL
+            AND rcn_load_cnt IS NULL
+        )
+        OR (
+            prcs_type = 'MFCCPNP'
+            AND rcn_fnd_cnt IS NOT NULL
+            AND rcn_no_cmnt_cnt IS NOT NULL
+            AND rcn_load_cnt IS NULL
+        )
+        OR (
+            prcs_type = 'MFCCSDP'
+            AND rcn_fnd_cnt IS NOT NULL
+            AND rcn_no_cmnt_cnt IS NOT NULL
+            AND rcn_load_cnt IS NULL
+        )
+        OR (
+            prcs_type = 'MFCEGLP'
+            AND rcn_fnd_cnt IS NULL
+            AND rcn_no_cmnt_cnt IS NULL
+            AND rcn_load_cnt IS NOT NULL
+        )
+        OR (
+            prcs_type = 'MFCEKFP'
+            AND rcn_fnd_cnt IS NULL
+            AND rcn_no_cmnt_cnt IS NULL
+            AND rcn_load_cnt IS NOT NULL
+        )
+        OR (
+            prcs_type = 'MFCELTP'
+            AND rcn_fnd_cnt IS NULL
+            AND rcn_no_cmnt_cnt IS NULL
+            AND rcn_load_cnt IS NOT NULL
+        )
+        OR (
+            prcs_type = 'MFCEMOP'
+            AND rcn_fnd_cnt IS NULL
+            AND rcn_no_cmnt_cnt IS NULL
+            AND rcn_load_cnt IS NOT NULL
+        )
+        OR (
+            prcs_type = 'MFCEPNP'
+            AND rcn_fnd_cnt IS NULL
+            AND rcn_no_cmnt_cnt IS NULL
+            AND rcn_load_cnt IS NOT NULL
+        )
+        OR (
+            prcs_type = 'MFCESDP'
+            AND rcn_fnd_cnt IS NULL
+            AND rcn_no_cmnt_cnt IS NULL
+            AND rcn_load_cnt IS NOT NULL
+        )
+        OR (
+            prcs_type = 'MFCEZPP'
+            AND rcn_fnd_cnt IS NULL
+            AND rcn_no_cmnt_cnt IS NULL
+            AND rcn_load_cnt IS NOT NULL
+        )
+    );
+alter table MFC_RCN_PRCS
+  add check ( rcn_prcs_status                          IN ('brk', 'cls', 'opn', 'stp'));
+alter table MFC_RCN_PRCS
+  add check ( rcn_scope_typ IN ('ADDR','BIMTN','BP','BP_POS','CONT','FR_LIM_COV','FR_LIM_USE','FR_RET_RES',
+                                                   'FXTR','GUARCRED','KEY_FIGURE','LEDGER','LEDGER_ALT','LIMIT','LOAN','MACC',
+                                                   'MINSTR','MINSTR_POS','MISC_ORDER','MMKT','MMKT_ALM','MMKT_PFAND','OTHSEC',
+                                                   'PERSON','POS_CERT','POS_MON','POS_MON_AI','POS_MON_CF','POS_MON_OP',
+                                                   'POS_SEC','POS_SEC_GA','POS_SEC_SV','PROV_IN_SP','REALSEC','REALTY','ZREG_PROOF',
+                                                   'ADDR_TMN','BP_TMN','CONT_TMN','MACC_TMN','PERSON_TMN',
+                                                   'FXTR_TMN','IRS_TMN','MMKT_TMN','OOFX_TMN','POS_MON_TMN','POS_SEC_TMN','REPOC_TMN'
+                                                  )
+                               );
+

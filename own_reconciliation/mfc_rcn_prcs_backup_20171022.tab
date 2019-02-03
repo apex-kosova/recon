@@ -1,0 +1,16 @@
+create table MFC_RCN_PRCS_BACKUP_20171022
+(
+  rcn_prcs_id         INTEGER not null,
+  rcn_prcs_status     VARCHAR2(3 CHAR) not null,
+  rcn_prcs_start_time TIMESTAMP(6) not null,
+  rcn_prcs_end_time   TIMESTAMP(6),
+  rcn_prcs_finding    VARCHAR2(4000 CHAR),
+  migr_run_id         INTEGER not null,
+  rcn_prgm_name       VARCHAR2(50 CHAR) not null,
+  rcn_scope_typ       VARCHAR2(10 CHAR) not null,
+  rcn_fnd_cnt         INTEGER,
+  rcn_load_cnt        INTEGER,
+  prcs_type           VARCHAR2(7) not null
+)
+;
+

@@ -1,0 +1,16 @@
+create table MFC_RCN_PRGM
+(
+  rcn_prgm_name VARCHAR2(50 CHAR) not null,
+  system_role   VARCHAR2(20 CHAR),
+  prgm_type     VARCHAR2(7) not null
+)
+;
+alter table MFC_RCN_PRGM
+  add constraint MFC_RCN_PRGM_PK primary key (RCN_PRGM_NAME);
+alter table MFC_RCN_PRGM
+  add constraint CH_INH_MFC_RCN_PRGM
+  check ( prgm_type IN ('MFCCGLP', 'MFCCHKP', 'MFCCPNP', 'MFCCSDP', 'MFCEGLP', 'MFCEKFP', 'MFCELTP', 'MFCEMOP', 'MFCEPNP', 'MFCESDP', 'MFCEZPP'));
+alter table MFC_RCN_PRGM
+  add constraint MFC_RCN_PRGM_EXDEP
+  check ( (prgm_type = 'MFCCGLP' AND system_role IS NULL) OR (prgm_type = 'MFCCHKP' AND system_role IS NULL) OR (prgm_type = 'MFCCPNP' AND system_role IS NULL) OR (prgm_type = 'MFCCSDP' AND system_role IS NULL) OR (prgm_type = 'MFCEGLP' AND system_role IS NOT NULL) OR (prgm_type = 'MFCEKFP' AND system_role IS NOT NULL) OR (prgm_type = 'MFCELTP' AND system_role IS NOT NULL) OR (prgm_type = 'MFCEMOP' AND system_role IS NOT NULL) OR (prgm_type = 'MFCEPNP' AND system_role IS NOT NULL) OR (prgm_type = 'MFCESDP' AND system_role IS NOT NULL) OR (prgm_type = 'MFCEZPP' AND system_role IS NOT NULL));
+
