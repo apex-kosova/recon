@@ -1,0 +1,3 @@
+create or replace synonym SYN_D2K_BA_ZREG
+  for OWN_D2KZ.D2K_BA_ZREG@PUIP01;
+

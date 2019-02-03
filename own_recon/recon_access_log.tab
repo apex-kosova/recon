@@ -1,0 +1,11 @@
+create table RECON_ACCESS_LOG
+(
+  access_log_id INTEGER not null,
+  user_name     VARCHAR2(100 CHAR),
+  full_name     VARCHAR2(100 CHAR),
+  access_date   DATE
+)
+;
+alter table RECON_ACCESS_LOG
+  add constraint RECON_ACCESS_LOG_PK primary key (ACCESS_LOG_ID);
+

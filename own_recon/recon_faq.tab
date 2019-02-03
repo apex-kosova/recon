@@ -1,0 +1,14 @@
+create table RECON_FAQ
+(
+  id        NUMBER(10),
+  grp       VARCHAR2(50),
+  migtype   VARCHAR2(50),
+  category  VARCHAR2(100),
+  errortext VARCHAR2(2000),
+  impact    VARCHAR2(4000),
+  reason    VARCHAR2(4000),
+  lang_id   NUMBER(4),
+  fit_week  VARCHAR2(50)
+)
+;
+

@@ -1,0 +1,9 @@
+CREATE OR REPLACE FORCE VIEW MFR_RECON_PROGRAM_V
+(recon_prgm_name, system_role, program_type)
+AS
+SELECT 
+  RCN_PRGM_NAME,
+  SYSTEM_ROLE,
+  PRGM_TYPE
+FROM MFC_RCN_PRGM_V;
+

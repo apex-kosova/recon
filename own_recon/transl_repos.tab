@@ -1,0 +1,10 @@
+create table TRANSL_REPOS
+(
+  page    NUMBER(5),
+  de      VARCHAR2(400),
+  fr      VARCHAR2(400),
+  it      VARCHAR2(400),
+  release VARCHAR2(20)
+)
+;
+

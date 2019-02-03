@@ -1,0 +1,5 @@
+create materialized view MV_COCKPIT_STATIC
+refresh force on demand
+as
+select * from v_cockpit_static;
+

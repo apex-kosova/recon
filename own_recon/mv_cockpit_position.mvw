@@ -1,0 +1,5 @@
+create materialized view MV_COCKPIT_POSITION
+refresh force on demand
+as
+select * from v_cockpit_position;
+
